@@ -16,17 +16,17 @@ async function main() {
     let NUM_ERC20_TO_DISTRIBUTE = 80_000;
     let NUM_ERC20_PER_REDEMPTION = 10_000;
 
-    let merkleTreeAndSource = readMerkleTreeAndSourceFromFile("./test/temp/mt_keys_8192.csv");
+    let merkleTreeAndSource = readMerkleTreeAndSourceFromFile("./test/temp/mt_keys_256.csv");
     let merkleTree = merkleTreeAndSource.merkleTree;
 
     let [ownerSigner] = await ethers.getSigners();
 
     let erc20 = await waffle.deployContract(
         ownerSigner,
-        {bytecode: ERC20_BYTECODE, abi: ERC20_ABI}, 
+        {bytecode: ERC20_BYTECODE, abi: ERC20_ABI},
         [
-            "Zk-airdrop", 
-            "ZkDRP", 
+            "Zk-airdrop",
+            "ZkDRP",
             BigNumber.from(ERC20_SUPPLY),
             ownerSigner.address
         ])
@@ -41,7 +41,7 @@ async function main() {
         await mainFactory.deploy(
             erc20.address,
             BigNumber.from(NUM_ERC20_PER_REDEMPTION),
-            plonk.address, 
+            plonk.address,
             toHex(merkleTree.root.val))) as PrivateAirdrop
     console.log(`PrivateAirdrop contract address: ${privateAirdrop.address}`);
 

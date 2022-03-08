@@ -16,7 +16,7 @@ async function main() {
 
     let ERC20_ADDR = "";
     let AIRDROP_ADDR = "";
-    let MT_KEYS_PATH = "./test/temp/mt_keys_8192.csv";
+    let MT_KEYS_PATH = "./test/temp/mt_keys_256.csv";
 
     let [collector] = await ethers.getSigners();
 
@@ -24,11 +24,11 @@ async function main() {
     let redeemIndex = 181;
     let key = merkleTreeAndSource.leafNullifiers[redeemIndex];
     let secret = merkleTreeAndSource.leafSecrets[redeemIndex];
-    let proof = 
+    let proof =
         await generateProofCallData(
-            merkleTreeAndSource.merkleTree, 
-            key, 
-            secret, 
+            merkleTreeAndSource.merkleTree,
+            key,
+            secret,
             collector.address,
             WASM_BUFF,
             ZKEY_BUFF);

@@ -31,9 +31,9 @@ export function saveMerkleTreeAndSource(mts: MerkleTreeAndSource, filePrefix: st
 
     let csvContent = "key,secret,commitment\n"
     for (let i = 0; i < mts.leafNullifiers.length; i++) {
-        csvContent += toHex(mts.leafNullifiers[i]) 
-            + "," 
-            + toHex(mts.leafSecrets[i]) 
+        csvContent += toHex(mts.leafNullifiers[i])
+            + ","
+            + toHex(mts.leafSecrets[i])
             + ","
             + toHex(mts.merkleTree.leaves[i].val)
             + "\n";
